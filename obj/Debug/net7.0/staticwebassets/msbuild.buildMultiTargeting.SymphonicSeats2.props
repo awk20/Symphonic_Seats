@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/SymphonicSeats2.props" />
+</Project>

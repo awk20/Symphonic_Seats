@@ -1,0 +1,15 @@
+﻿@model IEnumerable<SymphonicSeats2.Models.CollectionItem>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Symphonic Seats</h1>
+    <p>Welcome to Syphonics Seats. The one stop shop for concert tickets.</p>
+</div>
+
+@foreach (var item in Model)
+{
+    @Html.Partial("_HatCard", item)
+}
