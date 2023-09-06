@@ -9,8 +9,8 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
 
-    private readonly HatRepository repository;
-    public HomeController(ILogger<HomeController> logger, HatRepository repository)
+    private readonly CollectionItemRepository repository;
+    public HomeController(ILogger<HomeController> logger, CollectionItemRepository repository)
     {
         this.repository = repository;
         _logger = logger;

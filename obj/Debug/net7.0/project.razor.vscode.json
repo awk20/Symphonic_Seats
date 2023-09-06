@@ -24062,8 +24062,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/anthonyknapik/C#Projects/SymphonicSeats2/Views/Shared/_HatCard.cshtml",
-      "TargetPath": "Views\\Shared\\_HatCard.cshtml",
+      "FilePath": "/Users/anthonyknapik/C#Projects/SymphonicSeats2/Views/Shared/_ItemCard.cshtml",
+      "TargetPath": "Views\\Shared\\_ItemCard.cshtml",
       "FileKind": "mvc"
     }
   ]

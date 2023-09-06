@@ -1,10 +1,15 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<SymphonicSeats2.Models.HatRepository>();
+builder.Services.AddTransient<SymphonicSeats2.Models.CollectionItemRepository>();
+// registers and makes aviable all interactions for the database on disk
+builder.Services.AddDbContext<SymphonicSeats2.Models.CollectionContext>(
+    options => options.UseSqlite("Data Source=SymphonicSeats2.db")
+);
 
 var app = builder.Build();
 
