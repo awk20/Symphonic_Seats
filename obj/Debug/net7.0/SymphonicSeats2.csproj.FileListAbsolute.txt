@@ -67,3 +67,9 @@
 /Users/anthonyknapik/C#Projects/SymphonicSeats2/bin/Debug/net7.0/Microsoft.EntityFrameworkCore.Design.dll
 /Users/anthonyknapik/C#Projects/SymphonicSeats2/bin/Debug/net7.0/Mono.TextTemplating.dll
 /Users/anthonyknapik/C#Projects/SymphonicSeats2/bin/Debug/net7.0/System.CodeDom.dll
+/Users/anthonyknapik/C#Projects/SymphonicSeats2/bin/Debug/net7.0/Microsoft.OpenApi.dll
+/Users/anthonyknapik/C#Projects/SymphonicSeats2/bin/Debug/net7.0/Swashbuckle.AspNetCore.Swagger.dll
+/Users/anthonyknapik/C#Projects/SymphonicSeats2/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/Users/anthonyknapik/C#Projects/SymphonicSeats2/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/Users/anthonyknapik/C#Projects/SymphonicSeats2/obj/Debug/net7.0/SymphonicSeats2.MvcApplicationPartsAssemblyInfo.cs
+/Users/anthonyknapik/C#Projects/SymphonicSeats2/bin/Debug/net7.0/libman.json

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SymphonicSeats2.Models;
 
@@ -10,9 +11,11 @@ using SymphonicSeats2.Models;
 namespace SymphonicSeats2.Migrations
 {
     [DbContext(typeof(CollectionContext))]
-    partial class CollectionContextModelSnapshot : ModelSnapshot
+    [Migration("20230907170550_Introducing votes")]
+    partial class Introducingvotes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.10");
@@ -39,9 +42,6 @@ namespace SymphonicSeats2.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Votes")
-                        .HasColumnType("INTEGER");
-
                     b.HasKey("Id");
 
                     b.ToTable("CollectionItems");
@@ -54,8 +54,7 @@ namespace SymphonicSeats2.Migrations
                             Description = "See metal legends Metallica in concert in San Francisco.",
                             ImageURL = "https://cdn-aeoeg.nitrocdn.com/CEyMkTCvQqLzCiakJhTISKVqIxcNYCml/assets/images/optimized/rev-9a82380/secureyourtrademark.com/wp-content/uploads/2022/07/img-metallica-trademarks.jpg",
                             Location = "San Francisco, California",
-                            Name = "Metallica",
-                            Votes = 0
+                            Name = "Metallica"
                         },
                         new
                         {
@@ -64,8 +63,7 @@ namespace SymphonicSeats2.Migrations
                             Description = "Weezer is back on tour performing their latest album SZNZ.",
                             ImageURL = "https://s3.amazonaws.com/heights-photos/wp-content/uploads/2019/03/03130519/Weezer.jpg",
                             Location = "Austin, Texas",
-                            Name = "Weezer",
-                            Votes = 0
+                            Name = "Weezer"
                         },
                         new
                         {
@@ -74,8 +72,7 @@ namespace SymphonicSeats2.Migrations
                             Description = "Kings of the alternative genre, The Cure are back on tour for the first time in years.",
                             ImageURL = "https://blog.roughtrade.com/content/images/size/w1000/2022/02/Screen-Shot-2022-02-14-at-9.21.39-AM.png",
                             Location = "Miami, Florida",
-                            Name = "The Cure",
-                            Votes = 0
+                            Name = "The Cure"
                         });
                 });
 #pragma warning restore 612, 618
