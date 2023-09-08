@@ -41,14 +41,14 @@ public class CollectionItemRepository
         // Find elemnt being voted on by id
         var item = FindById(id);
 
-        System.Console.WriteLine($"Voting for {item.Name}");
+        //System.Console.WriteLine($"Voting for {item.Name}");
         // If item is not found function is over
         if (item == CollectionItem.NotFound)
         {
             return 0;
         }
 
-        System.Console.WriteLine($"Voting for {item.Name}");
+        //System.Console.WriteLine($"Voting for {item.Name}");
 
         // if direction is upvote increment Votes by one
         if (direction)
@@ -61,7 +61,7 @@ public class CollectionItemRepository
             item.Votes--;
         }
 
-        System.Console.WriteLine($"The {item.Name} vote total is now {item.Votes}");
+        //System.Console.WriteLine($"The {item.Name} vote total is now {item.Votes}");
 
         // update the collectionitem and save the changes to it
         _context.CollectionItems.Update(item);

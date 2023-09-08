@@ -5,6 +5,7 @@ using SymphonicSeats2.Models;
 
 namespace SymphonicSeats2.Controllers;
 
+
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -20,6 +21,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
+        var ex = new ArgumentNullException("Foo");
+        _logger.LogError(ex, "Error processing request for homepage");
         // Get data items and format as a view 
         var items = repository.Get();
         return View(items);
@@ -46,6 +49,11 @@ public class HomeController : Controller
             return NotFound();
         }
         return Ok(item);
+    }
+
+    public IActionResult Create()
+    {
+        return View();
     }
 
     public IActionResult Privacy()
