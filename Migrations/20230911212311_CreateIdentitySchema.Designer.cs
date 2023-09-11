@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SymphonicSeats2.Models;
 
@@ -10,9 +11,11 @@ using SymphonicSeats2.Models;
 namespace SymphonicSeats2.Migrations
 {
     [DbContext(typeof(CollectionContext))]
-    partial class CollectionContextModelSnapshot : ModelSnapshot
+    [Migration("20230911212311_CreateIdentitySchema")]
+    partial class CreateIdentitySchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.10");

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -12,17 +13,19 @@ namespace SymphonicSeats2.Controllers
     public class CollectionItemController : Controller
     {
         private readonly CollectionContext _context;
+        private readonly IWebHostEnvironment Environment;
 
-        public CollectionItemController(CollectionContext context)
+        public CollectionItemController(CollectionContext context, IWebHostEnvironment environment)
         {
             _context = context;
+            this.Environment = environment;
         }
 
         // GET: CollectionItem
         // Returns collection items into a view
         public async Task<IActionResult> Index()
         {
-              return Redirect("/");
+            return Redirect("/");
         }
 
         // GET: CollectionItem/Details/5
@@ -54,14 +57,33 @@ namespace SymphonicSeats2.Controllers
         // POST: CollectionItem/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // Recieves data when forms are entered, checks if data is valid, and then adds teh new CollectionItem to the database and
+        // returns to index page. 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,ConcertTime,ImageURL,Location,Votes")] CollectionItem collectionItem)
+        public async Task<IActionResult> Create(
+            [Bind("Name,Description,ConcertTime,Location")]
+            CollectionItem collectionItem,
+            List<IFormFile> files)
         {
             if (ModelState.IsValid)
             {
+                // if we didnt get a file, it will be null
+                if ((files.FirstOrDefault()?.Length ?? 0) > 0)
+                {
+                    // specifying the path of the file being directed to the collectionIages folder
+                    var filePath = Path.Combine(this.Environment.WebRootPath, "collectionImages", collectionItem.Name + ".jpg");
+
+                    using (var stream = System.IO.File.Create(filePath))
+                    {
+                        await files.First().CopyToAsync(stream);
+                    }
+
+                    collectionItem.ImageURL = $"/collectionImages/{collectionItem.Name}.jpg";
+                }
                 _context.Add(collectionItem);
                 await _context.SaveChangesAsync();
+                // turns Index into "Index" to return you to the index page after for is submitted
                 return RedirectToAction(nameof(Index));
             }
             return View(collectionItem);
@@ -150,14 +172,14 @@ namespace SymphonicSeats2.Controllers
             {
                 _context.CollectionItems.Remove(collectionItem);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CollectionItemExists(int id)
         {
-          return (_context.CollectionItems?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.CollectionItems?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

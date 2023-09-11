@@ -1,8 +1,13 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using SymphonicSeats2.Models;
+using Microsoft.Identity.Client; /////////
+
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("SymphonicSeats2IdentityDbContextConnection") ?? throw new InvalidOperationException("Connection string 'SymphonicSeats2IdentityDbContextConnection' not found.");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -13,6 +18,11 @@ builder.Services.AddTransient<SymphonicSeats2.Models.CollectionItemRepository>()
 builder.Services.AddDbContext<SymphonicSeats2.Models.CollectionContext>(
     options => options.UseSqlite("Data Source=SymphonicSeats2.db")
 );
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+    options.SignIn.RequireConfirmedAccount = true)
+    /* .AddRoles<IdentityRole>()       */                 // new addition
+    .AddEntityFrameworkStores<CollectionContext>();
 
 // Used for OpenApi usage
 builder.Services.AddEndpointsApiExplorer();
@@ -32,6 +42,10 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+// Adds authentication and authorization
+app.UseAuthentication();
+app.UseAuthorization();
 
 // Adds Swagger UI to build mode
 // Can mve it outside of the code block to be available in development
@@ -53,13 +67,26 @@ app.Use(async (context, next) =>
 }
 );
 
-app.UseAuthorization();
+
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+app.MapRazorPages();
 // Map voitng hub to the address "~/voting"
 app.MapHub<SymphonicSeats2.VotingHub>("/voting");
+
+// new addition for role additions
+/* using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService < RoleManager<IdentityRole>();
+
+    var roles = new[] { "Admin", "Member" };
+
+    foreach (var role in roles)
+    {
+
+    }
+} */
 
 app.Run();

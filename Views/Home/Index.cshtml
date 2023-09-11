@@ -14,21 +14,20 @@
 <div class="row">
     <div class="col mb-3">
         @*<a href='@Url.Action("Create")' class="btn btn-primary col-sm-2">Add Item </a>*@
-        <a asp-controller="CollectionItems" asp-action="Create"
-           class="btn btn-primary">Add Item</a>
+        <a asp-controller="CollectionItem" asp-action="Create" class="btn btn-primary">Add Item</a>
     </div>
 </div>
 
 <div class="row row-cols-1 row-cols-md-3 g-4">
-@foreach (var item in Model)
-{
-    <partial name="_ItemCard" model="item" />
-}
+    @foreach (var item in Model)
+    {
+        <partial name="_ItemCard" model="item" />
+    }
 </div>
 
 @*
-    When app starts up it grabs the info about signalr, makes connection to hub, and listens for recieve vote command
-    When vote is clicked we send mesage back hub to send vote
+When app starts up it grabs the info about signalr, makes connection to hub, and listens for recieve vote command
+When vote is clicked we send mesage back hub to send vote
 *@
 @section Scripts {
     <script>var connection = new signalR.HubConnectionBuilder().withUrl("/voting").build();

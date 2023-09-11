@@ -1,8 +1,10 @@
 using System.Collections.ObjectModel;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace SymphonicSeats2.Models;
-public class CollectionContext : DbContext
+public class CollectionContext : IdentityDbContext<IdentityUser>
 {
 
     // Constructor including dtaabse connection stream
