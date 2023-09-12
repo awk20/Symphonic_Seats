@@ -1,20 +1,39 @@
 ﻿@model IEnumerable<SymphonicSeats2.Models.CollectionItem>
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SigninManager
+@inject UserManager<IdentityUser> UserManager
+
+
 @inject IConfiguration Configuration
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="text-center">
+    <h1 class="display-4">Symphonic Seats Admin Page</h1>
+    <p>Welcome, Admin. Add, Update, or Delete currently listed Concerts to better fit which are currrently available</p>
+</div>
+}
+else
+{
+    <div class="text-center">
     <h1 class="display-4">Symphonic Seats</h1>
     <p>Welcome to Syphonics Seats. The one stop shop for concert tickets.</p>
 </div>
-
+}
 @* Displays the different cards of concert data on the View page *@
 <div class="row">
     <div class="col mb-3">
         @*<a href='@Url.Action("Create")' class="btn btn-primary col-sm-2">Add Item </a>*@
-        <a asp-controller="CollectionItem" asp-action="Create" class="btn btn-primary">Add Item</a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-controller="CollectionItem" asp-action="Create" class="btn btn-primary">Add Item</a>
+        }
     </div>
 </div>
 
@@ -29,6 +48,7 @@
 When app starts up it grabs the info about signalr, makes connection to hub, and listens for recieve vote command
 When vote is clicked we send mesage back hub to send vote
 *@
+@* @if ((await AuthService.AuthorizeAsync(User, "CanEdit")).Succeeded) *@
 @section Scripts {
     <script>var connection = new signalR.HubConnectionBuilder().withUrl("/voting").build();
 

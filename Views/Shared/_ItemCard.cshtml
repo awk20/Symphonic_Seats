@@ -17,10 +17,13 @@
         </h5>*@
         <h5 class="card-title">
             <a asp-controller="CollectionItem" asp-action="Details" asp-route-id="@Model.Id">@Model.Name</a>
-            <a asp-controller="CollectionItem" asp-action="Edit" asp-route-id="@Model.Id"><span class="oi oi-pencil"
-                    title="pencil" aria-hidden="true">Edit</span></a>
-            <a asp-controller="CollectionItem" asp-action="Delete" asp-route-id="@Model.Id"><span class="oi oi-x"
-                    title="x" aria-hidden="true">Delete</span></a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-controller="CollectionItem" asp-action="Edit" asp-route-id="@Model.Id"><span class="oi oi-pencil"
+                        title="pencil" aria-hidden="true">Edit</span></a>
+                <a asp-controller="CollectionItem" asp-action="Delete" asp-route-id="@Model.Id"><span class="oi oi-x"
+                        title="x" aria-hidden="true">Delete</span></a>
+            }
         </h5>
         <p class="card-text">@Model.Description</p>
     </div>

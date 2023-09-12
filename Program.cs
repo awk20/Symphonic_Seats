@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using SymphonicSeats2.Models;
-using Microsoft.Identity.Client; /////////
+using Microsoft.Identity.Client;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Builder; /////////
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,12 +23,21 @@ builder.Services.AddDbContext<SymphonicSeats2.Models.CollectionContext>(
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     options.SignIn.RequireConfirmedAccount = true)
-    /* .AddRoles<IdentityRole>()       */                 // new addition
+    .AddRoles<IdentityRole>()                       // new addition
     .AddEntityFrameworkStores<CollectionContext>();
 
 // Used for OpenApi usage
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("CanEdit", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+    });
+});
+
 
 var app = builder.Build();
 
@@ -72,21 +83,48 @@ app.Use(async (context, next) =>
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.MapRazorPages();
+
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.
+        GetRequiredService<RoleManager<IdentityRole>>();
+
+    var roles = new[] { "Admin", "User" };
+
+    foreach (var role in roles)
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+            await roleManager.CreateAsync(new IdentityRole(role));
+    }
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var userManager = scope.ServiceProvider.
+        GetRequiredService<UserManager<IdentityUser>>();
+
+    string email = "hello@gmail.com";
+    string password = "Password123#";
+
+    if (await userManager.FindByEmailAsync(email) == null)
+    {
+        var user = new IdentityUser();
+        user.UserName = email;
+        user.Email = email;
+        user.EmailConfirmed = true;
+
+        await userManager.CreateAsync(user, password);
+
+        await userManager.AddToRoleAsync(user, "Admin");
+    }
+}
+
 // Map voitng hub to the address "~/voting"
 app.MapHub<SymphonicSeats2.VotingHub>("/voting");
 
 // new addition for role additions
-/* using (var scope = app.Services.CreateScope())
-{
-    var roleManager = scope.ServiceProvider.GetRequiredService < RoleManager<IdentityRole>();
 
-    var roles = new[] { "Admin", "Member" };
-
-    foreach (var role in roles)
-    {
-
-    }
-} */
 
 app.Run();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -49,6 +50,7 @@ namespace SymphonicSeats2.Controllers
 
         // GET: CollectionItem/Create
         //
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -61,6 +63,7 @@ namespace SymphonicSeats2.Controllers
         // returns to index page. 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(
             [Bind("Name,Description,ConcertTime,Location")]
             CollectionItem collectionItem,
@@ -90,6 +93,7 @@ namespace SymphonicSeats2.Controllers
         }
 
         // GET: CollectionItem/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.CollectionItems == null)
@@ -141,6 +145,7 @@ namespace SymphonicSeats2.Controllers
         }
 
         // GET: CollectionItem/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.CollectionItems == null)
@@ -161,6 +166,7 @@ namespace SymphonicSeats2.Controllers
         // POST: CollectionItem/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.CollectionItems == null)

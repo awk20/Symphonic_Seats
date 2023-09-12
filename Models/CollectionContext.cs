@@ -7,7 +7,7 @@ namespace SymphonicSeats2.Models;
 public class CollectionContext : IdentityDbContext<IdentityUser>
 {
 
-    // Constructor including dtaabse connection stream
+    // Constructor including databse connection stream
     public CollectionContext(DbContextOptions<CollectionContext> options)
         : base(options)
     {

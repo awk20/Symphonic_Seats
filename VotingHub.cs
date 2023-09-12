@@ -18,7 +18,6 @@ public class VotingHub : Hub
     // passes in the id of the item being voted on and whther or not it is an up or down vote
     public async Task SendVote(int collectionItemId, bool voteDirection)
     {
-        System.Console.WriteLine("Receiving vote for " + collectionItemId);
         // Call Vote() from CollectionItemRepository.cs
         var newVoteTotal = _repository.Vote(collectionItemId, voteDirection);
 
