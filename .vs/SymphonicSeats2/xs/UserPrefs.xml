@@ -1,10 +1,16 @@
 ﻿<Properties StartupConfiguration="{7A9748F7-E5CA-409D-95F1-ED6D5B661180}|https">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Views/Shared/_ItemCard.cshtml">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
     <Files>
-      <File FileName="Controllers/CollectionItemController.cs" Line="25" Column="33" />
-      <File FileName="Views/Home/Index.cshtml" Line="1" Column="1" />
-      <File FileName="Views/Shared/_ItemCard.cshtml" Line="21" Column="66" />
-      <File FileName="Views/CollectionItem/Details.cshtml" Line="1" Column="1" />
+      <File FileName="Controllers/CollectionItemController.cs" />
+      <File FileName="Views/Home/Index.cshtml" />
+      <File FileName="Views/Shared/_ItemCard.cshtml" Line="38" Column="7" />
+      <File FileName="Views/CollectionItem/Details.cshtml" />
+      <File FileName="Program.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,23 +19,15 @@
             <Node name="SymphonicSeats2">
               <Node name="Controllers" expanded="True" />
               <Node name="Views" expanded="True">
-                <Node name="CollectionItem" expanded="True" />
-                <Node name="Home" expanded="True" />
-                <Node name="Shared" expanded="True">
-                  <Node name="_ItemCard.cshtml" selected="True" />
-                </Node>
+                <Node name="Shared" expanded="True" />
               </Node>
+              <Node name="Program.cs" selected="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.SymphonicSeats2 PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

@@ -23,7 +23,8 @@ public class CollectionContext : IdentityDbContext<IdentityUser>
             Description = "See metal legends Metallica in concert in San Francisco.",
             ImageURL = "https://cdn-aeoeg.nitrocdn.com/CEyMkTCvQqLzCiakJhTISKVqIxcNYCml/assets/images/optimized/rev-9a82380/secureyourtrademark.com/wp-content/uploads/2022/07/img-metallica-trademarks.jpg",
             ConcertTime = new DateTime(2023, 12, 18),
-            Location = "San Francisco, California"
+            Location = "San Francisco, California",
+            Price = 350
         },
         new CollectionItem
         {
@@ -32,7 +33,8 @@ public class CollectionContext : IdentityDbContext<IdentityUser>
             Description = "Weezer is back on tour performing their latest album SZNZ.",
             ConcertTime = new DateTime(2023, 10, 15),
             ImageURL = "https://s3.amazonaws.com/heights-photos/wp-content/uploads/2019/03/03130519/Weezer.jpg",
-            Location = "Austin, Texas"
+            Location = "Austin, Texas",
+            Price = 200
         },
         new CollectionItem
         {
@@ -41,7 +43,8 @@ public class CollectionContext : IdentityDbContext<IdentityUser>
             Description = "Kings of the alternative genre, The Cure are back on tour for the first time in years.",
             ConcertTime = new DateTime(2023, 09, 21),
             ImageURL = "https://blog.roughtrade.com/content/images/size/w1000/2022/02/Screen-Shot-2022-02-14-at-9.21.39-AM.png",
-            Location = "Miami, Florida"
+            Location = "Miami, Florida",
+            Price = 150
         }
         );
 

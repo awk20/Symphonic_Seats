@@ -1,15 +1,30 @@
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using SymphonicSeats2.Models;
-using Microsoft.Identity.Client;
+using Stripe;
 using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Builder; /////////
-
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("SymphonicSeats2IdentityDbContextConnection") ?? throw new InvalidOperationException("Connection string 'SymphonicSeats2IdentityDbContextConnection' not found.");
+
+// Add Stripe API services 
+StripeConfiguration.ApiKey = builder.Configuration["Stripe:SecretKey"];
+
+// Prevents from errors
+builder.Services.AddCors(builder =>
+{
+    builder.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
+// Set all endpoint urls to lowercase
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -63,6 +78,7 @@ app.UseAuthorization();
 app.UseSwagger();
 app.UseSwaggerUI();
 
+// Exception handling testß
 app.Use(async (context, next) =>
 {
     // Get the exception
@@ -78,7 +94,8 @@ app.Use(async (context, next) =>
 }
 );
 
-
+// 
+app.UseCors();
 
 app.MapControllerRoute(
     name: "default",
@@ -86,6 +103,8 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 
+
+// Added for creating an admin user to update, add, and delete a concert from the database
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.

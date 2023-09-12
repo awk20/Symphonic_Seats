@@ -294,3 +294,4 @@
 /Users/anthonyknapik/C#Projects/SymphonicSeats2/bin/Debug/net7.0/Microsoft.Extensions.Identity.Core.dll
 /Users/anthonyknapik/C#Projects/SymphonicSeats2/bin/Debug/net7.0/Microsoft.Extensions.Identity.Stores.dll
 /Users/anthonyknapik/C#Projects/SymphonicSeats2/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+/Users/anthonyknapik/C#Projects/SymphonicSeats2/bin/Debug/net7.0/Stripe.net.dll

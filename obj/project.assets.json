@@ -2662,6 +2662,23 @@
           "lib/net6.0/SQLitePCLRaw.provider.e_sqlite3.dll": {}
         }
       },
+      "Stripe.net/42.4.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3",
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Stripe.net.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Stripe.net.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.5.0": {
         "type": "package",
         "dependencies": {
@@ -8365,6 +8382,29 @@
         "sqlitepclraw.provider.e_sqlite3.nuspec"
       ]
     },
+    "Stripe.net/42.4.0": {
+      "sha512": "LvTOffXbPgtz9HjaFCQbbN1g6EV6se2f6cP45LRcnYirrQcqi/0zHFjPcXMxuC+8jRAErXvXeQvHUcxDi4b11Q==",
+      "type": "package",
+      "path": "stripe.net/42.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "icon.png",
+        "lib/net461/Stripe.net.dll",
+        "lib/net461/Stripe.net.xml",
+        "lib/net5.0/Stripe.net.dll",
+        "lib/net5.0/Stripe.net.xml",
+        "lib/net6.0/Stripe.net.dll",
+        "lib/net6.0/Stripe.net.xml",
+        "lib/netcoreapp3.1/Stripe.net.dll",
+        "lib/netcoreapp3.1/Stripe.net.xml",
+        "lib/netstandard2.0/Stripe.net.dll",
+        "lib/netstandard2.0/Stripe.net.xml",
+        "stripe.net.42.4.0.nupkg.sha512",
+        "stripe.net.nuspec"
+      ]
+    },
     "Swashbuckle.AspNetCore/6.5.0": {
       "sha512": "FK05XokgjgwlCI6wCT+D4/abtQkL1X1/B9Oas6uIwHFmYrIO9WUD5aLC9IzMs9GnHfUXOtXZ2S43gN1mhs5+aA==",
       "type": "package",
@@ -12435,6 +12475,7 @@
       "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.10",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.10",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.9",
+      "Stripe.net >= 42.4.0",
       "Swashbuckle.AspNetCore >= 6.5.0"
     ]
   },
@@ -12508,6 +12549,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[7.0.9, )"
+          },
+          "Stripe.net": {
+            "target": "Package",
+            "version": "[42.4.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

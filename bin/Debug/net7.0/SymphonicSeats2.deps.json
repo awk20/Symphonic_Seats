@@ -15,6 +15,7 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.10",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.10",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.9",
+          "Stripe.net": "42.4.0",
           "Swashbuckle.AspNetCore": "6.5.0"
         },
         "runtime": {
@@ -2005,6 +2006,18 @@
           }
         }
       },
+      "Stripe.net/42.4.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "System.Configuration.ConfigurationManager": "6.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Stripe.net.dll": {
+            "assemblyVersion": "42.4.0.0",
+            "fileVersion": "42.4.0.0"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.5.0": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
@@ -3914,6 +3927,13 @@
       "sha512": "sha512-CSlb5dUp1FMIkez9Iv5EXzpeq7rHryVNqwJMWnpq87j9zWZexaEMdisDktMsnnrzKM6ahNrsTkjqNodTBPBxtQ==",
       "path": "sqlitepclraw.provider.e_sqlite3/2.1.4",
       "hashPath": "sqlitepclraw.provider.e_sqlite3.2.1.4.nupkg.sha512"
+    },
+    "Stripe.net/42.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LvTOffXbPgtz9HjaFCQbbN1g6EV6se2f6cP45LRcnYirrQcqi/0zHFjPcXMxuC+8jRAErXvXeQvHUcxDi4b11Q==",
+      "path": "stripe.net/42.4.0",
+      "hashPath": "stripe.net.42.4.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.5.0": {
       "type": "package",

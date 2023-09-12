@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using NuGet.Protocol.Plugins;
 
 namespace SymphonicSeats2.Models;
 
@@ -23,5 +24,7 @@ public class CollectionItem
 
     // Not mapped makes sure it doesnt get written to he databse and doesnt try to load it from db
     public int Votes { get; set; }
+
+    public long Price { get; set; }
 
 }

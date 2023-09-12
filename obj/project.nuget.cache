@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4SPyg1+TgmdtnKv94ikVxItBpmZJs3SnQyutIHCIGLAySCH7gkW9Qg3g8RtPVyw3xyl2LX9Gq1KnGBH/8XI+rA==",
+  "dgSpecHash": "u16S2B+v/6h7MLDnAd3t+ykD7QLJvRCWDzOly2UpGKKqGTQ1ql6NHFs37cbE3n0Oc3gmKdXdrVeN4cISe2L5nQ==",
   "success": true,
   "projectFilePath": "/Users/anthonyknapik/C#Projects/SymphonicSeats2/SymphonicSeats2.csproj",
   "expectedPackageFiles": [
@@ -160,6 +160,7 @@
     "/Users/anthonyknapik/.nuget/packages/sqlitepclraw.core/2.1.4/sqlitepclraw.core.2.1.4.nupkg.sha512",
     "/Users/anthonyknapik/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.4/sqlitepclraw.lib.e_sqlite3.2.1.4.nupkg.sha512",
     "/Users/anthonyknapik/.nuget/packages/sqlitepclraw.provider.e_sqlite3/2.1.4/sqlitepclraw.provider.e_sqlite3.2.1.4.nupkg.sha512",
+    "/Users/anthonyknapik/.nuget/packages/stripe.net/42.4.0/stripe.net.42.4.0.nupkg.sha512",
     "/Users/anthonyknapik/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "/Users/anthonyknapik/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "/Users/anthonyknapik/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",

@@ -3,18 +3,6 @@
 <div class="card" style="width: 18rem; display: inline-block">
     <img src=@Model.ImageURL class="card-img-top" alt="...">
     <div class="card-body">
-        @*<h5 class="card-title">
-        <a asp-controller="CollectionItems"
-        asp-action="Details" asp-route-id="@Model.Id">
-        @Model.Name
-        </a>
-        <a asp-controller="CollectionItems"
-        asp-action="Edit" asp-route-id="@Model.Id">
-        <span class="oi oi-pencil" title="pencil" aria-hidden="true"></span>
-        </a>
-        <a asp-controller="CollectionItems"
-        asp-action="Delete" asp-route-id="@Model.Id"><span class="oi oi-x" title="x" aria-hidden="true"></span></a>
-        </h5>*@
         <h5 class="card-title">
             <a asp-controller="CollectionItem" asp-action="Details" asp-route-id="@Model.Id">@Model.Name</a>
             @if (User.IsInRole("Admin"))
@@ -26,6 +14,7 @@
             }
         </h5>
         <p class="card-text">@Model.Description</p>
+        <p class="card-text">Ticket Price: $@Model.Price</p>
     </div>
     <div class="card-footer user-select-none">
         @Model.ConcertTime.ToString("dddd, dd MMMM yyyy")
