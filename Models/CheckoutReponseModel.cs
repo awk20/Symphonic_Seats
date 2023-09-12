@@ -4,7 +4,7 @@ public class ChcekoutResponseModel
 {
     // Each payment goes to a session which each have an id
     // Get all session data from the Id
-    public string SessionId { get; set; }
+    public string? SessionId { get; set; }
 
     // Publishable key
     // Sends a repsonse when purchase is clicked and opens Strip payment window 

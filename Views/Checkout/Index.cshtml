@@ -1,0 +1,88 @@
+@model IEnumerable<SymphonicSeats2.Models.CollectionItem>
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SigninManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@inject IConfiguration Configuration
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="text-center">
+    <h1 class="display-4">Symphonic Seats Admin Page</h1>
+    <p>Welcome, Admin. Add, Update, or Delete currently listed Concerts to better fit which are currrently available</p>
+</div>
+}
+else
+{
+    <div class="text-center">
+    <h1 class="display-4">Symphonic Seats</h1>
+    <p>Welcome to Syphonics Seats. The one stop shop for concert tickets.</p>
+</div>
+}
+@* Displays the different cards of concert data on the View page *@
+<div class="row">
+    <div class="col mb-3">
+        @*<a href='@Url.Action("Create")' class="btn btn-primary col-sm-2">Add Item </a>*@
+        @if (User.IsInRole("Admin"))
+        {
+            <a asp-controller="CollectionItem" asp-action="Create" class="btn btn-primary">Add Item</a>
+        }
+    </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var item in Model)
+    {
+        <partial name="_ItemCard" model="item" />
+    }
+
+    <p>
+        <a asp-action="Checkout" asp-controller="Checkout" value="Checkout">Checkout</a>
+    </p>
+</div>
+
+@*
+When app starts up it grabs the info about signalr, makes connection to hub, and listens for recieve vote command
+When vote is clicked we send mesage back hub to send vote
+*@
+@* @if ((await AuthService.AuthorizeAsync(User, "CanEdit")).Succeeded) *@
+@section Scripts {
+    <script>
+        var connection = new signalR.HubConnectionBuilder().withUrl("/voting").build();
+
+        // Create connection
+        connection.on("ReceiveVote", function (itemId, totalVotes) {
+            // Liisten for ReceievVote notification
+            document.getElementById(`item_${itemId}`).textContent = totalVotes;
+        });
+
+        // Start the connection
+        connection.start().catch(function (err) {
+            return console.error(err.toString());
+        });
+
+        var votingButtons = document.querySelectorAll(".vote");
+
+
+        for (var i = 0; i < votingButtons.length; i++) {
+            votingButtons[i].addEventListener("click", function (event) {
+                var itemId = event.srcElement.attributes["data-id"].value;
+                var direction = event.srcElement.attributes["data-direction"].value;
+                connection.invoke("SendVote", parseInt(itemId, 10), (direction == "true")).catch(function (err) {
+                    return console.error(err.toString());
+                });
+                event.preventDefault();
+            });
+        }</script>
+
+    <script>
+
+    </script>
+}

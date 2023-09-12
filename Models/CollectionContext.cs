@@ -44,7 +44,7 @@ public class CollectionContext : IdentityDbContext<IdentityUser>
             ConcertTime = new DateTime(2023, 09, 21),
             ImageURL = "https://blog.roughtrade.com/content/images/size/w1000/2022/02/Screen-Shot-2022-02-14-at-9.21.39-AM.png",
             Location = "Miami, Florida",
-            Price = 150
+            Price = 175
         }
         );
 

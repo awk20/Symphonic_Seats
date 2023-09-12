@@ -43,7 +43,7 @@ public class CheckoutController : ControllerBase
             var sessionId = await CheckOut(item, thisApiUrl);
             var pubKey = _configuration["Stripe:PubKey"];
 
-            var checkoutOrderResponse = new CheckoutOrderResponse()
+            var checkoutOrderResponse = new ChcekoutResponseModel()
             {
                 SessionId = sessionId,
                 PubKey = pubKey
@@ -113,3 +113,129 @@ public class CheckoutController : ControllerBase
         return Redirect(s_wasmClientURL + "success");
     }
 } */
+
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Identity.Client;
+//using Stripe.BillingPortal;
+using SymphonicSeats2.Models;
+using Stripe.Checkout;
+using Stripe;
+using System.Reflection.Metadata;
+
+namespace SymphonicSeats2.Controllers
+{
+    public class CheckoutController : Controller
+    {
+
+        private readonly CollectionContext _context;
+        private readonly IWebHostEnvironment Environment;
+
+        public CheckoutController(CollectionContext context, IWebHostEnvironment environment)
+        {
+            _context = context;
+            this.Environment = environment;
+        }
+        public async Task<IActionResult> Index()
+        {
+            return Redirect("/");
+        }
+
+        // confirms order and redirects accordingly 
+        public IActionResult OrderConfirmation()
+        {
+            var service = new SessionService();
+            Session session = service.Get(TempData["Session"].ToString());
+
+            if (session.PaymentStatus == "paid")
+            {
+                var transaction = session.PaymentIntentId.ToString();
+                return View("Success");
+            }
+            else
+            {
+                return View("Login");
+            }
+        }
+
+        public IActionResult Success()
+        {
+            return View();
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult Checkout()
+        {
+            List<CollectionItem> productList = new List<CollectionItem>()
+                    {
+                        new CollectionItem
+                        {
+                            Id = 2,
+                            Name = "Weezer",
+                            Description = "Weezer is back on tour performing their latest album SZNZ.",
+                            ConcertTime = new DateTime(2023, 10, 15),
+                            ImageURL = "https://s3.amazonaws.com/heights-photos/wp-content/uploads/2019/03/03130519/Weezer.jpg",
+                            Location = "Austin, Texas",
+                            Price = 200,
+                            NumTickets = 400
+                        },
+                        new CollectionItem
+                        {
+                            Id = 3,
+                            Name = "The Cure",
+                            Description = "Kings of the alternative genre, The Cure are back on tour for the first time in years.",
+                            ConcertTime = new DateTime(2023, 09, 21),
+                            ImageURL = "https://blog.roughtrade.com/content/images/size/w1000/2022/02/Screen-Shot-2022-02-14-at-9.21.39-AM.png",
+                            Location = "Miami, Florida",
+                            Price = 175,
+                            NumTickets = 300
+                        }
+                    };
+
+            var domain = "http://localhost:5270/";
+
+            var options = new SessionCreateOptions
+            {
+                SuccessUrl = domain + $"Checkout/OrderConfirmation",
+                CancelUrl = domain + $"Checkout/Login",
+                LineItems = new List<SessionLineItemOptions>(),
+                Mode = "payment",
+
+            };
+
+
+            foreach (var item in productList)
+            {
+                var sessionListItem = new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
+                        UnitAmount = (item.Price),
+                        Currency = "USD",
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        {
+                            Name = item.Name.ToString(),
+                        }
+                    },
+                    Quantity = 1
+                };
+                options.LineItems.Add(sessionListItem);
+            }
+
+            var service = new SessionService();
+            Session session = service.Create(options);
+
+            TempData["Session"] = session.Id;
+
+            Response.Headers.Add("Location", session.Url);
+            return new StatusCodeResult(303);
+
+        }
+    }
+
+
+}

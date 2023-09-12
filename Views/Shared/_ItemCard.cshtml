@@ -1,5 +1,7 @@
 @model SymphonicSeats2.Models.CollectionItem
 
+@using Client.Pages
+
 <div class="card" style="width: 18rem; display: inline-block">
     <img src=@Model.ImageURL class="card-img-top" alt="...">
     <div class="card-body">
@@ -14,7 +16,8 @@
             }
         </h5>
         <p class="card-text">@Model.Description</p>
-        <p class="card-text">Ticket Price: $@Model.Price</p>
+        <p class="card-text">Tickets Starting At: $@Model.Price</p>
+        <p class="card-text">Seats Remaining: @Model.NumTickets</p>
     </div>
     <div class="card-footer user-select-none">
         @Model.ConcertTime.ToString("dddd, dd MMMM yyyy")

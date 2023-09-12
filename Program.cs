@@ -143,6 +143,7 @@ using (var scope = app.Services.CreateScope())
 // Map voitng hub to the address "~/voting"
 app.MapHub<SymphonicSeats2.VotingHub>("/voting");
 
+
 // new addition for role additions
 
 

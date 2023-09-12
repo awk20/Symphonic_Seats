@@ -21,8 +21,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        var ex = new ArgumentNullException("Foo");
-        _logger.LogError(ex, "Error processing request for homepage");
+        /* var ex = new ArgumentNullException("Foo");
+        _logger.LogError(ex, "Error processing request for homepage"); */
         // Get data items and format as a view 
         var items = repository.Get();
         return View(items);

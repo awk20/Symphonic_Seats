@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vAuOAa4EQN7zn2XGsTJT5hiOdA8w/Eqpym31j17+tGM=",
+  "Hash": "pJSNd631rvqMnEUPX+Hlxa1Hr/XfVaBpP+5SImHYSTM=",
   "Source": "SymphonicSeats2",
   "BasePath": "_content/SymphonicSeats2",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/Users/anthonyknapik/C#Projects/SymphonicSeats2/wwwroot/js/checkout.js",
+      "SourceId": "SymphonicSeats2",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/anthonyknapik/C#Projects/SymphonicSeats2/wwwroot/",
+      "BasePath": "_content/SymphonicSeats2",
+      "RelativePath": "js/checkout.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/checkout.js"
     },
     {
       "Identity": "/Users/anthonyknapik/C#Projects/SymphonicSeats2/wwwroot/js/signalr/dist/browser/signalr.js",

@@ -42,6 +42,9 @@ else
     {
         <partial name="_ItemCard" model="item" />
     }
+    <p>
+        <a asp-action="Checkout" asp-controller="Checkout" value="Checkout">Checkout</a>
+    </p>
 </div>
 
 @*
@@ -50,7 +53,8 @@ When vote is clicked we send mesage back hub to send vote
 *@
 @* @if ((await AuthService.AuthorizeAsync(User, "CanEdit")).Succeeded) *@
 @section Scripts {
-    <script>var connection = new signalR.HubConnectionBuilder().withUrl("/voting").build();
+    <script>
+        var connection = new signalR.HubConnectionBuilder().withUrl("/voting").build();
 
         // Create connection
         connection.on("ReceiveVote", function (itemId, totalVotes) {
@@ -76,4 +80,8 @@ When vote is clicked we send mesage back hub to send vote
                 event.preventDefault();
             });
         }</script>
+
+    <script>
+
+    </script>
 }

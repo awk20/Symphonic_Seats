@@ -24100,6 +24100,21 @@
       "FilePath": "/Users/anthonyknapik/C#Projects/SymphonicSeats2/Areas/Identity/Pages/_ViewStart.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\_ViewStart.cshtml",
       "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/anthonyknapik/C#Projects/SymphonicSeats2/Views/Checkout/Index.cshtml",
+      "TargetPath": "Views\\Checkout\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/anthonyknapik/C#Projects/SymphonicSeats2/Views/Checkout/Login.cshtml",
+      "TargetPath": "Views\\Checkout\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/anthonyknapik/C#Projects/SymphonicSeats2/Views/Checkout/Success.cshtml",
+      "TargetPath": "Views\\Checkout\\Success.cshtml",
+      "FileKind": "mvc"
     }
   ]
 }
