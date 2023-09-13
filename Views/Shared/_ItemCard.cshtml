@@ -2,31 +2,56 @@
 
 @using Client.Pages
 
-<div class="card" style="width: 18rem; display: inline-block">
-    <img src=@Model.ImageURL class="card-img-top" alt="...">
-    <div class="card-body">
-        <h5 class="card-title">
-            <a asp-controller="CollectionItem" asp-action="Details" asp-route-id="@Model.Id">@Model.Name</a>
-            @if (User.IsInRole("Admin"))
-            {
-                <a asp-controller="CollectionItem" asp-action="Edit" asp-route-id="@Model.Id"><span class="oi oi-pencil"
-                        title="pencil" aria-hidden="true">Edit</span></a>
-                <a asp-controller="CollectionItem" asp-action="Delete" asp-route-id="@Model.Id"><span class="oi oi-x"
-                        title="x" aria-hidden="true">Delete</span></a>
-            }
-        </h5>
-        <p class="card-text">@Model.Description</p>
-        <p class="card-text">Tickets Starting At: $@Model.Price</p>
-        <p class="card-text">Seats Remaining: @Model.NumTickets</p>
-        @* link to purchase page of the ticket a user is buying *@
-        <a href="@Url.Action("Checkout", "Checkout", new { id = @Model.Id})">Purchase Ticket</a>
-    </div>
-    <div class="card-footer user-select-none">
-        @Model.ConcertTime.ToString("dddd, dd MMMM yyyy")
-        <div class="float-end">
-            <span class="vote" data-id="@Model.Id" data-direction="true" style="cursor: pointer">👍</span>
-            <span class="voteCount" id="item_@Model.Id">@Model.Votes</span>
-            <span class="vote" data-id="@Model.Id" data-direction="false" style="cursor: pointer">👎</span>
+@*
+<div class="card-footer user-select-none">
+@Model.ConcertTime.ToString("dddd, dd MMMM yyyy")
+<div class="float-end">
+<span class="vote" data-id="@Model.Id" data-direction="true" style="cursor: pointer">👍</span>
+<span class="voteCount" id="item_@Model.Id">@Model.Votes</span>
+<span class="vote" data-id="@Model.Id" data-direction="false" style="cursor: pointer">👎</span>
+</div>
+</div>
+</div> *@
+
+<div class="col">
+    <div class="card h-100 border-secondary mb-3">
+        <img src="@Model.ImageURL" class="card-img-top" alt="...">
+        <div class="card-body" style="background-color: #222529;">
+            <h5 class="card-title" style="color: #AEB5BC;">
+                <a asp-controller="CollectionItem" asp-action="Details" asp-route-id="@Model.Id"
+                    style="color: #AEB5BC;">@Model.Name:</a>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a asp-controller="CollectionItem" asp-action="Edit" asp-route-id="@Model.Id"><span class="oi oi-pencil"
+                            title="pencil" aria-hidden="true">Edit</span></a>
+                    <a asp-controller="CollectionItem" asp-action="Delete" asp-route-id="@Model.Id"><span class="oi oi-x"
+                            title="x" aria-hidden="true">Delete</span></a>
+                }
+                @Model.ConcertTime.ToString("dddd, dd MMMM yyyy")
+            </h5>
+            <p class="card-text" style="color: #AEB5BC;">@Model.Description</p>
+            <p class="card-text" style="color: #AEB5BC;">Tickets Starting At: $@Convert.ToInt32(@Model.Price)</p>
+            <p class="card-text" style="color: #AEB5BC;">Seats Remaining: @Model.NumTickets</p>
         </div>
     </div>
 </div>
+
+@section Scripts
+    {
+    <script>
+        document.getElementById("purchaseButton").addEventListener("click", function () {
+            var id = @Model.Id;
+            $.ajax({
+                url: '@Url.Action("Checkout", "Checkout")',
+                type: 'GET',
+                data: { id: Model.Id },
+                success: function (result) {
+                    console.log(result);
+                }
+            });
+        }),
+            error: function() {
+                console.log("Error occured when clicking button");
+            }
+    </script>
+}
