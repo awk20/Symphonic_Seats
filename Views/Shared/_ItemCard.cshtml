@@ -18,6 +18,8 @@
         <p class="card-text">@Model.Description</p>
         <p class="card-text">Tickets Starting At: $@Model.Price</p>
         <p class="card-text">Seats Remaining: @Model.NumTickets</p>
+        @* link to purchase page of the ticket a user is buying *@
+        <a href="@Url.Action("Checkout", "Checkout", new { id = @Model.Id})">Purchase Ticket</a>
     </div>
     <div class="card-footer user-select-none">
         @Model.ConcertTime.ToString("dddd, dd MMMM yyyy")

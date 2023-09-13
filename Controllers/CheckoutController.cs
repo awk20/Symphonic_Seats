@@ -168,63 +168,85 @@ namespace SymphonicSeats2.Controllers
             return View();
         }
 
-        public IActionResult Checkout()
+        public IActionResult Checkout(int id)
         {
-            List<CollectionItem> productList = new List<CollectionItem>()
-                    {
-                        new CollectionItem
-                        {
-                            Id = 2,
-                            Name = "Weezer",
-                            Description = "Weezer is back on tour performing their latest album SZNZ.",
-                            ConcertTime = new DateTime(2023, 10, 15),
-                            ImageURL = "https://s3.amazonaws.com/heights-photos/wp-content/uploads/2019/03/03130519/Weezer.jpg",
-                            Location = "Austin, Texas",
-                            Price = 200,
-                            NumTickets = 400
-                        },
-                        new CollectionItem
-                        {
-                            Id = 3,
-                            Name = "The Cure",
-                            Description = "Kings of the alternative genre, The Cure are back on tour for the first time in years.",
-                            ConcertTime = new DateTime(2023, 09, 21),
-                            ImageURL = "https://blog.roughtrade.com/content/images/size/w1000/2022/02/Screen-Shot-2022-02-14-at-9.21.39-AM.png",
-                            Location = "Miami, Florida",
-                            Price = 175,
-                            NumTickets = 300
-                        }
-                    };
+            /*             List<CollectionItem> productList = new List<CollectionItem>()
+                                {
+                                    new CollectionItem
+                                    {
+                                        Id = 2,
+                                        Name = "Weezer",
+                                        Description = "Weezer is back on tour performing their latest album SZNZ.",
+                                        ConcertTime = new DateTime(2023, 10, 15),
+                                        ImageURL = "https://s3.amazonaws.com/heights-photos/wp-content/uploads/2019/03/03130519/Weezer.jpg",
+                                        Location = "Austin, Texas",
+                                        Price = 200,
+                                        NumTickets = 400
+                                    },
+                                    new CollectionItem
+                                    {
+                                        Id = 3,
+                                        Name = "The Cure",
+                                        Description = "Kings of the alternative genre, The Cure are back on tour for the first time in years.",
+                                        ConcertTime = new DateTime(2023, 09, 21),
+                                        ImageURL = "https://blog.roughtrade.com/content/images/size/w1000/2022/02/Screen-Shot-2022-02-14-at-9.21.39-AM.png",
+                                        Location = "Miami, Florida",
+                                        Price = 175,
+                                        NumTickets = 300
+                                    }
+                                }; */
 
             var domain = "http://localhost:5270/";
+
+            // Should get the database element based on id which will be passed in 
+            //depending on which card is clicked 
+            var itemToPurchase = _context.CollectionItems
+                                        .Where(i => i.Id == id)
+                                        .FirstOrDefault();
+
 
             var options = new SessionCreateOptions
             {
                 SuccessUrl = domain + $"Checkout/OrderConfirmation",
                 CancelUrl = domain + $"Checkout/Login",
-                LineItems = new List<SessionLineItemOptions>(),
+                LineItems = new List<SessionLineItemOptions>
+                {
+                    new SessionLineItemOptions
+                    {
+                        PriceData = new SessionLineItemPriceDataOptions
+                        {
+                            UnitAmount = itemToPurchase.Price,
+                            Currency = "USD",
+                            ProductData = new SessionLineItemPriceDataProductDataOptions
+                            {
+                                Name = itemToPurchase.Name.ToString()
+                            }
+                        },
+                        Quantity = 1
+                    }
+                },
                 Mode = "payment",
 
             };
 
 
-            foreach (var item in productList)
-            {
-                var sessionListItem = new SessionLineItemOptions
-                {
-                    PriceData = new SessionLineItemPriceDataOptions
-                    {
-                        UnitAmount = (item.Price),
-                        Currency = "USD",
-                        ProductData = new SessionLineItemPriceDataProductDataOptions
+            /*             foreach (var item in productList)
                         {
-                            Name = item.Name.ToString(),
-                        }
-                    },
-                    Quantity = 1
-                };
-                options.LineItems.Add(sessionListItem);
-            }
+                            var sessionListItem = new SessionLineItemOptions
+                            {
+                                PriceData = new SessionLineItemPriceDataOptions
+                                {
+                                    UnitAmount = (item.Price),
+                                    Currency = "USD",
+                                    ProductData = new SessionLineItemPriceDataProductDataOptions
+                                    {
+                                        Name = item.Name.ToString(),
+                                    }
+                                },
+                                Quantity = 1
+                            };
+                            options.LineItems.Add(sessionListItem);
+                        } */
 
             var service = new SessionService();
             Session session = service.Create(options);
