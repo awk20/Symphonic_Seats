@@ -4,38 +4,38 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Concert Details</h1>
+<h1 style="color: white;">Concert Details</h1>
 
 <div>
-    <h4>Concert: @Model.Name</h4>
+    <h4 style="color: white;">Concert: @Model.Name</h4>
     <hr />
     <div class="row">
         <span class="col-sm-4">
             <img src="@Model.ImageURL" class="details-img" />
         </span>
-        <dl class="col-sm-8">
+        <dl class="col-sm-8" style="color: white;">
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Name)
             </dt>
-            <dd class="col-sm-6">
+            <dd class="col-sm-6" style="color: #AEB5BC;">
                 @Html.DisplayFor(model => model.Name)
             </dd>
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Description)
             </dt>
-            <dd class="col-sm-6">
+            <dd class="col-sm-6" style="color: #AEB5BC;">
                 @Html.DisplayFor(model => model.Description)
             </dd>
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.ConcertTime)
             </dt>
-            <dd class="col-sm-6">
+            <dd class="col-sm-6" style="color: #AEB5BC;">
                 @Model.ConcertTime.ToString("dddd, dd MMMM yyyy")
             </dd>
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Location)
             </dt>
-            <dd class="col-sm-6">
+            <dd class="col-sm-6" style="color: #AEB5BC;">
                 @Html.DisplayFor(model => model.Location)
             </dd>
             <a href="@Url.Action("Checkout", "Checkout", new { id = @Model.Id})" class="btn btn-primary">Purchase
@@ -46,7 +46,7 @@
 <div>
     @if (User.IsInRole("Admin"))
     {
-        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
     }
-    <a asp-action="Index">Back to Homepage</a>
+    <a asp-action="Index" class="btn btn-primary">Back to Homepage</a>
 </div>
