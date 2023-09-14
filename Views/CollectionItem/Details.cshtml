@@ -38,15 +38,16 @@
             <dd class="col-sm-6" style="color: #AEB5BC;">
                 @Html.DisplayFor(model => model.Location)
             </dd>
-            <a href="@Url.Action("Checkout", "Checkout", new { id = @Model.Id})" class="btn btn-primary">Purchase
+            <a href="@Url.Action("Checkout", "Checkout", new { id = @Model.Id})" class="btn btn-success">Purchase
                 Ticket</a>
         </dl>
     </div>
 </div>
+<br />
 <div>
     @if (User.IsInRole("Admin"))
     {
-        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-success">Edit</a>
     }
-    <a asp-action="Index" class="btn btn-primary">Back to Homepage</a>
+    <a asp-action="Index" class="btn btn-success">Back to Homepage</a>
 </div>

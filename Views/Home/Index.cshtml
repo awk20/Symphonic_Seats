@@ -36,7 +36,9 @@ else
         @*<a href='@Url.Action("Create")' class="btn btn-primary col-sm-2">Add Item </a>*@
         @if (User.IsInRole("Admin"))
         {
-            <a asp-controller="CollectionItem" asp-action="Create" class="btn btn-primary">Add Item</a>
+            <a asp-controller="CollectionItem" asp-action="Create" class="btn btn-success">
+                <i class="fa-solid fa-plus" style="color: #ffffff;"></i> Add Item
+            </a>
         }
     </div>
 </div>

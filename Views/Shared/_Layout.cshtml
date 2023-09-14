@@ -9,15 +9,21 @@
     <link rel="stylesheet" href="~/lib/open-iconic/css/open-iconic-bootstrap.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SymphonicSeats2.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body style="background-color: #222529">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3"
+        <nav class="navbar sticky-top bg-body-tertiary navbar-expand-sm navbar-toggleable-sm navbar-light  mb-3"
             style="background-color: #198754;">
             <div class="container-fluid">
-                <a class=" navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"
-                    style="color: white;">Symphonic Seats</a>
+
+                <a class=" navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="color: white;">
+                    <i class="fa-solid fa-ticket fa-bounce" style="color: #ffffff;"></i>
+                    Symphonic Seats
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -44,8 +50,8 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container" style="background-color: #3A353F;">
+    <footer class="border-top- footer text-muted">
+        <div class="container" @* style="background-color: #3A353F;" *@>
             &copy; 2023 - Symphonic Seats - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>

@@ -19,19 +19,24 @@
         <div class="card-body" style="background-color: #222529;">
             <h5 class="card-title" style="color: #AEB5BC;">
                 <a asp-controller="CollectionItem" asp-action="Details" asp-route-id="@Model.Id"
-                    style="color: #AEB5BC;">@Model.Name:</a>
-                @if (User.IsInRole("Admin"))
-                {
-                    <a asp-controller="CollectionItem" asp-action="Edit" asp-route-id="@Model.Id"><span class="oi oi-pencil"
-                            title="pencil" aria-hidden="true">Edit</span></a>
-                    <a asp-controller="CollectionItem" asp-action="Delete" asp-route-id="@Model.Id"><span class="oi oi-x"
-                            title="x" aria-hidden="true">Delete</span></a>
-                }
+                    style="color: #198754; text-decoration: none;">@Model.Name</a>
+                :
                 @Model.ConcertTime.ToString("dddd, dd MMMM yyyy")
             </h5>
             <p class="card-text" style="color: #AEB5BC;">@Model.Description</p>
             <p class="card-text" style="color: #AEB5BC;">Tickets Starting At: $@Convert.ToInt32(@Model.Price)</p>
             <p class="card-text" style="color: #AEB5BC;">Seats Remaining: @Model.NumTickets</p>
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-controller="CollectionItem" asp-action="Edit" asp-route-id="@Model.Id"
+                    style="text-decoration: none;">
+                    <i class="fa-solid fa-pen-to-square" style="color: #ffffff; text-decoration: none;"></i>
+                </a>
+                <a asp-controller="CollectionItem" asp-action="Delete" asp-route-id="@Model.Id"
+                    style="text-decoration: none;">
+                    <i class="fa-solid fa-trash" style="color: #ffffff; text-decoration: none;"></i>
+                </a>
+            }
         </div>
     </div>
 </div>
