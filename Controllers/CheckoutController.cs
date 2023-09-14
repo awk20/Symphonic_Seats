@@ -27,7 +27,7 @@ namespace SymphonicSeats2.Controllers
         }
 
         // confirms order and redirects accordingly 
-        public IActionResult OrderConfirmation()
+        public IActionResult OrderConfirmation(int id)
         {
             var service = new SessionService();
             Session session = service.Get(TempData["Session"].ToString());

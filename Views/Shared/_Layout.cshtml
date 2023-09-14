@@ -12,14 +12,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&family=Familjen+Grotesk&display=swap"
+        rel="stylesheet">
 </head>
 
 @* class="navbar navbar-expand-sm bg-body-tertiary mb-3" *@
 
-<body style="background-color: #222529">
+<body style="background-color: #222529;">
     <header>
-        <nav class="navbar navbar-expand-sm bd-navbar sticky-top" style="background-color: #198754;">
+        <nav class="navbar navbar-expand-sm bd-navbar fixed-top shadow p-3 mb-5 bg-body-tertiary rounded"
+            style="background-color: #198754;">
             <div class="container-fluid">
+                <br />
+                <br />
                 <a class=" navbar-brand" asp-area="" asp-controller="Home" asp-action="Index" style="color: white;">
                     <i class="fa-solid fa-ticket fa-bounce" style="color: #ffffff;"></i>
                     Symphonic Seats
@@ -38,13 +45,17 @@
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy"
                                 style="color: white;">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Cart"
+                                style="color: white;">Cart</a>
+                        </li>
                     </ul>
                     <partial name="_LoginPartial" style="color: white;" />
                 </div>
             </div>
         </nav>
     </header>
-    <div class=" container" style="background-color: #222529;">
+    <div class=" container" style="background-color: #222529; padding-top: 100px;">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

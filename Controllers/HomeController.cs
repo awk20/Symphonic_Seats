@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SymphonicSeats2.Models;
 
@@ -26,6 +27,12 @@ public class HomeController : Controller
         // Get data items and format as a view 
         var items = repository.Get();
         return View(items);
+    }
+
+    [Authorize]
+    public IActionResult Cart()
+    {
+        return View();
     }
 
     // Decarator for listening for httpget of data
