@@ -65,7 +65,7 @@ namespace SymphonicSeats2.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create(
-            [Bind("Name,Description,ConcertTime,Location")]
+            [Bind("Name,Description,ConcertTime,Location,Price,NumTickets")]
             CollectionItem collectionItem,
             List<IFormFile> files)
         {

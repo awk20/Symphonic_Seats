@@ -46,6 +46,16 @@ public class CollectionContext : IdentityDbContext<IdentityUser>
             Location = "Miami, Florida",
             Price = 175
         }
+        /*         new CollectionItem
+                {
+                    Id = 6,
+                    Name = "Blur",
+                    Description = "Back for the first time in more than a decade, Brit Pop band Blur is on tour for their first album in quite a while",
+                    ConcertTime = new DateTime(2023, 10, 2),
+                    ImageURL = "https://upload.wikimedia.org/wikipedia/commons/5/5b/BlurWembley090723_%28166_of_172%29_%28cropped%29.jpg",
+                    Location = "Ontario, Canada",
+                    Price = 175
+                } */
         );
 
         base.OnModelCreating(modelBuilder);
