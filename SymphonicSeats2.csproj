@@ -26,4 +26,9 @@
     <PackageReference Include="Stripe.net" Version="42.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="SymphonicSeats2.db" CopyToPublishDirectory="Always" />
+    <Folder Include="wwwroot\colleciotnImages\"/>
+  </ItemGroup>
+
 </Project>
